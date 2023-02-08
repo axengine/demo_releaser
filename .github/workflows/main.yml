@@ -24,7 +24,7 @@ jobs:
 
       - name: Build
         run: |
-          go build main.go -o demoreleaser
+          go build -o demoreleaser
 
       # Deploy
       - name: Deploy
