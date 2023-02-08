@@ -54,4 +54,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script_stop: true
           script: |
-            cd /data/demor/ && nohup ./demoreleaser &
+            whoami
+            cd /data/demor/ && nohup ./demoreleaser > nohup.out 2>1 < /dev/null &
+            ls -la
