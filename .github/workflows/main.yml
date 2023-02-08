@@ -55,5 +55,5 @@ jobs:
           script_stop: true
           script: |
             whoami
-            cd /data/demor/ && nohup ./demoreleaser > nohup.out 2>1 < /dev/null &
+            cd /data/demor/ && nohup ./demoreleaser > nohup.out 2>&1 &
             ls -la
