@@ -1,0 +1,38 @@
+# main.yml
+name: deploy to linux server
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  discussions: write
+
+jobs:
+
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.17
+          cache: true
+
+      - name: Build
+        run: |
+          go build main.go -o demoreleaser
+
+      # Deploy
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v2.0.7
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
+          ARGS: "-avz --delete"
+          SOURCE: "[Current File Dir]"
+          REMOTE_HOST: "[Domain]"
+          REMOTE_USER: "[UserName]"
+          TARGET: "[Server Dir]"
