@@ -1,5 +1,5 @@
 # goactionsdemo
-使用github actions 进行持续继承与部署
+使用github actions 进行持续集成与部署
 
 ## release.yml
 编译并打包发布
